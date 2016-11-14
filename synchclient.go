@@ -190,10 +190,14 @@ func (c *syncClient) Info() (result map[string]string, err Error) {
 
 func parseInfo(buff []byte) map[string]string {
 	infoStr := bytes.NewBuffer(buff).String()
-	infoItems := strings.SplitN(infoStr, "\r\n", 0)
-	result := make(map[string]string)
+	infoItems := strings.SplitN(infoStr, "\r\n", -1)
+	result := make(map[string]string, len(infoItems))
 	for _, entry := range infoItems {
 		etuple := strings.SplitN(entry, ":", 2)
+		if len(etuple) < 2 {
+			// section name
+			continue
+		}
 		result[etuple[0]] = etuple[1]
 	}
 	return result
