@@ -1,11 +1,11 @@
 //   Copyright 2009-2012 Joubin Houshyar
-// 
+//
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
-//    
+//
 //   http://www.apache.org/licenses/LICENSE-2.0
-//    
+//
 //   Unless required by applicable law or agreed to in writing, software
 //   distributed under the License is distributed on an "AS IS" BASIS,
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -128,7 +128,7 @@ type Client interface {
 	// Redis SAVE command.
 	Save() Error
 
-	// Redis KEYS command using "*" wildcard 
+	// Redis KEYS command using "*" wildcard
 	AllKeys() (result []string, err Error)
 
 	// Redis KEYS command.
@@ -229,6 +229,9 @@ type Client interface {
 
 	// Redis SADD command.
 	Sadd(key string, arg1 []byte) (result bool, err Error)
+
+	// Redis SLOWLOG LEN command.
+	SlowlogLen() (result int64, err Error)
 
 	// Redis SREM command.
 	Srem(key string, arg1 []byte) (result bool, err Error)
@@ -349,7 +352,7 @@ type AsyncClient interface {
 	// Redis SAVE command.
 	Save() (status FutureBool, err Error)
 
-	// Redis KEYS command using "*" wildcard 
+	// Redis KEYS command using "*" wildcard
 	AllKeys() (result FutureKeys, err Error)
 
 	// Redis KEYS command.
@@ -637,7 +640,7 @@ type PubSubChannel <-chan []byte
 // redis:d
 //
 // global debug flag for redis package components.
-// 
+//
 var _debug *bool = flag.Bool("redis:d", false, "debug flag for go-redis") // TEMP: should default to false
 func debug() bool {
 	return *_debug
