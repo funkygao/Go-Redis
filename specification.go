@@ -160,7 +160,7 @@ var (
 	SISMEMBER     Command = Command{"SISMEMBER", KEY_VALUE, BOOLEAN}
 	SINTER        Command = Command{"SINTER", MULTI_KEY, MULTI_BULK}
 	SINTERSTORE   Command = Command{"SINTERSTORE", MULTI_KEY, STATUS}
-	SLOWLOGLEN    Command = Command{"SLOWLOG LEN", NO_ARG, NUMBER}
+	SLOWLOGLEN    Command = Command{"SLOWLOG", KEY, NUMBER}
 	SUNION        Command = Command{"SUNION", MULTI_KEY, MULTI_BULK}
 	SUNIONSTORE   Command = Command{"SUNIONSTORE", MULTI_KEY, STATUS}
 	SDIFF         Command = Command{"SDIFF", MULTI_KEY, MULTI_BULK}

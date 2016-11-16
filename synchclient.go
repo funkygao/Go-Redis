@@ -361,7 +361,7 @@ func (c *syncClient) Dbsize() (result int64, err Error) {
 // Redis SLOWLOG LEN command.
 func (c *syncClient) SlowlogLen() (result int64, err Error) {
 	var resp Response
-	resp, err = c.conn.ServiceRequest(&SLOWLOGLEN, [][]byte{})
+	resp, err = c.conn.ServiceRequest(&SLOWLOGLEN, [][]byte{[]byte("LEN")})
 	if err == nil {
 		result = resp.GetNumberValue()
 	}
