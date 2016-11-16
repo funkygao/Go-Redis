@@ -358,6 +358,17 @@ func (c *syncClient) Dbsize() (result int64, err Error) {
 
 }
 
+// Redis SLOWLOG LEN command.
+func (c *syncClient) SlowlogLen() (result int64, err Error) {
+	var resp Response
+	resp, err = c.conn.ServiceRequest(&SLOWLOGLEN, [][]byte{})
+	if err == nil {
+		result = resp.GetNumberValue()
+	}
+	return result, err
+
+}
+
 // Redis EXPIRE command.
 func (c *syncClient) Expire(arg0 string, arg1 int64) (result bool, err Error) {
 	arg0bytes := []byte(arg0)
