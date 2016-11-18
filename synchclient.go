@@ -374,7 +374,9 @@ func (c *syncClient) MaxMemory() (result int64, err Error) {
 	var resp Response
 	resp, err = c.conn.ServiceRequest(&CONFIG, [][]byte{[]byte("GET"), []byte("maxmemory")})
 	if err == nil {
-		result = resp.GetNumberValue()
+		res := resp.GetMultiBulkData()
+		result, _ = strconv.ParseInt(string(res[1]), 10, 64)
+		return
 	}
 	return result, err
 
