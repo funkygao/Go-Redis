@@ -233,6 +233,9 @@ type Client interface {
 	// Redis SLOWLOG LEN command.
 	SlowlogLen() (result int64, err Error)
 
+	// Redis CONFIG GET maxmemory command.
+	MaxMemory() (result int64, err Error)
+
 	// Redis SREM command.
 	Srem(key string, arg1 []byte) (result bool, err Error)
 

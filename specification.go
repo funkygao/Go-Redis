@@ -125,6 +125,7 @@ var (
 	GET           Command = Command{"GET", KEY, BULK}
 	GETSET        Command = Command{"GETSET", KEY_VALUE, BULK}
 	MGET          Command = Command{"MGET", MULTI_KEY, MULTI_BULK}
+	CONFIG        Command = Command{"CONFIG", MULTI_KEY, NUMBER}
 	SETNX         Command = Command{"SETNX", KEY_VALUE, BOOLEAN}
 	INCR          Command = Command{"INCR", KEY, NUMBER}
 	INCRBY        Command = Command{"INCRBY", KEY_NUM, NUMBER}

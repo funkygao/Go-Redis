@@ -369,6 +369,17 @@ func (c *syncClient) SlowlogLen() (result int64, err Error) {
 
 }
 
+// Redis CONFIG GET maxmemory command.
+func (c *syncClient) MaxMemory() (result int64, err Error) {
+	var resp Response
+	resp, err = c.conn.ServiceRequest(&CONFIG, [][]byte{[]byte("GET"), []byte("maxmemory")})
+	if err == nil {
+		result = resp.GetNumberValue()
+	}
+	return result, err
+
+}
+
 // Redis EXPIRE command.
 func (c *syncClient) Expire(arg0 string, arg1 int64) (result bool, err Error) {
 	arg0bytes := []byte(arg0)
