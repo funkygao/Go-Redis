@@ -240,10 +240,6 @@ func newConnHdl(spec *ConnectionSpec) (hdl *connHdl) {
 	} else {
 		mode = TCP
 		addr = fmt.Sprintf("%s:%d", spec.host, spec.port)
-		_, e := net.ResolveTCPAddr(TCP, addr)
-		if e != nil {
-			panic(fmt.Errorf("%s(): failed to resolve remote address %s", loginfo, addr))
-		}
 	}
 
 	conn, e := net.Dial(mode, addr)
